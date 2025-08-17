@@ -28,7 +28,6 @@ carousel_name = "attract"
 metadata/_custom_type_script = "uid://d4hta15lm7phh"
 
 [node name="title" type="Label" parent="MPFCarousel"]
-visible = false
 layout_mode = 0
 offset_right = 1274.0
 offset_bottom = 556.0
@@ -39,7 +38,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="credits" type="Label" parent="MPFCarousel"]
-visible = false
 layout_mode = 0
 offset_left = 2.0
 offset_top = 172.0
@@ -55,17 +53,14 @@ variable_name = "credits_string"
 metadata/_custom_type_script = "uid://d0hs6t7ye10x3"
 
 [node name="mpf_logo" type="Sprite2D" parent="MPFCarousel"]
-visible = false
 position = Vector2(615.5, 304)
 scale = Vector2(2.50455, 1.875)
 texture = ExtResource("4_twbla")
 
 [node name="last_scores_1p" type="Node2D" parent="MPFCarousel"]
-visible = false
 position = Vector2(1, -208)
 
 [node name="player1_score" type="Label" parent="MPFCarousel/last_scores_1p"]
-visible = false
 offset_right = 1281.0
 offset_bottom = 1022.0
 theme_override_font_sizes/font_size = 80
