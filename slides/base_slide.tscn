@@ -41,3 +41,37 @@ variable_name = "score"
 comma_separate = true
 min_digits = 2
 metadata/_custom_type_script = "uid://d0hs6t7ye10x3"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 174.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+
+[node name="HFlowContainer" type="HFlowContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 30
+
+[node name="player_number" type="Label" parent="MarginContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.404761, 0.300512, 1.44392e-07, 1)
+theme_override_font_sizes/font_size = 60
+text = "Player: 1"
+script = ExtResource("2_2jp88")
+variable_name = "number"
+template_string = "Player: %s"
+min_players = 2
+metadata/_custom_type_script = "uid://d0hs6t7ye10x3"
+
+[node name="player_ball" type="Label" parent="MarginContainer/HFlowContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.404761, 0.300512, 1.44392e-07, 1)
+theme_override_font_sizes/font_size = 60
+text = "Ball: 1"
+script = ExtResource("2_2jp88")
+variable_name = "ball"
+template_string = "Ball: %s"
+metadata/_custom_type_script = "uid://d0hs6t7ye10x3"
