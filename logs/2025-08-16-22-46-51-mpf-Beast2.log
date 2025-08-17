@@ -1,0 +1,62 @@
+2025-08-16 22:46:51,595 : INFO : root : Loading config.
+2025-08-16 22:46:51,762 : INFO : ConfigProcessor : Config spec file cache created: C:\Users\jimhe\AppData\Local\Temp\config_spec.mpf_cache
+2025-08-16 22:46:51,763 : INFO : YamlMultifileConfigLoader : Machine config file #1: config.yaml
+2025-08-16 22:46:51,763 : INFO : ConfigProcessor : Loading config from file C:\Users\jimhe\mpf\Lib\site-packages\mpf\mpfconfig.yaml.
+2025-08-16 22:46:51,801 : INFO : ConfigProcessor : Loading config: C:\Users\jimhe\mpf\Lib\site-packages\mpf\mpfconfig.yaml
+2025-08-16 22:46:51,801 : INFO : ConfigProcessor : Loading config from file C:\Users\jimhe\Desktop\Pinball\Homebrew\code\first-pinball\config\config.yaml.
+2025-08-16 22:46:51,802 : INFO : ConfigProcessor : Loading config: C:\Users\jimhe\Desktop\Pinball\Homebrew\code\first-pinball\config\config.yaml
+2025-08-16 22:46:51,803 : INFO : ConfigProcessor : Config file cache created: C:\Users\jimhe\AppData\Local\Temp\8073e9a78929e556a4a70f73c0b62290.mpf_cache
+2025-08-16 22:46:52,014 : INFO : ConfigProcessor : Loading config from file C:\Users\jimhe\mpf\Lib\site-packages\mpf\modes\attract\config\attract.yaml.
+2025-08-16 22:46:52,021 : INFO : ConfigProcessor : Loading config: C:\Users\jimhe\mpf\Lib\site-packages\mpf\modes\attract\config\attract.yaml
+2025-08-16 22:46:52,021 : INFO : ConfigProcessor : Loading config from file C:\Users\jimhe\Desktop\Pinball\Homebrew\code\first-pinball\modes\attract\config\attract.yaml.
+2025-08-16 22:46:52,022 : INFO : ConfigProcessor : Loading config: C:\Users\jimhe\Desktop\Pinball\Homebrew\code\first-pinball\modes\attract\config\attract.yaml
+2025-08-16 22:46:52,022 : INFO : ConfigProcessor : Config file cache created: C:\Users\jimhe\AppData\Local\Temp\70492ca0b0a2912953f2f420569e519a.mpf_cache
+2025-08-16 22:46:52,023 : INFO : ConfigProcessor : Loading config from file C:\Users\jimhe\mpf\Lib\site-packages\mpf\modes\game\config\game.yaml.
+2025-08-16 22:46:52,029 : INFO : ConfigProcessor : Loading config: C:\Users\jimhe\mpf\Lib\site-packages\mpf\modes\game\config\game.yaml
+2025-08-16 22:46:52,030 : INFO : ConfigProcessor : Config file cache created: C:\Users\jimhe\AppData\Local\Temp\f2c0949b5d5b03e2e141533a008d39a8.mpf_cache
+2025-08-16 22:46:52,031 : INFO : ConfigProcessor : Loading config from cache: C:\Users\jimhe\AppData\Local\Temp\70492ca0b0a2912953f2f420569e519a.mpf_cache
+2025-08-16 22:46:52,037 : INFO : ConfigProcessor : Loading config from file C:\Users\jimhe\Desktop\Pinball\Homebrew\code\first-pinball\modes\base\config\base.yaml.
+2025-08-16 22:46:52,038 : INFO : ConfigProcessor : Loading config: C:\Users\jimhe\Desktop\Pinball\Homebrew\code\first-pinball\modes\base\config\base.yaml
+2025-08-16 22:46:52,038 : INFO : ConfigProcessor : Config file cache created: C:\Users\jimhe\AppData\Local\Temp\70c5cd0af2c1a8cd65a5e6394f059cd8.mpf_cache
+2025-08-16 22:46:52,039 : INFO : Machine : Mission Pinball Framework Core Engine v0.80.0.dev8
+2025-08-16 22:46:52,039 : INFO : Machine : Command line arguments: {'no_load_cache': False, 'create_config_cache': True, 'bcp': False, 'configfile': ['config.yaml'], 'force_assets_load': False, 'platform_integration_test': False, 'jsonlogging': False, 'logfile': 'logs\\2025-08-16-22-46-51-mpf-Beast2.log', 'pause': False, 'production': False, 'text_ui': False, 'loglevel': 15, 'consoleloglevel': 20, 'force_platform': 'virtual', 'syslog_address': None, 'full_logfile_path': 'C:\\Users\\jimhe\\Desktop\\Pinball\\Homebrew\\code\\first-pinball\\logs\\2025-08-16-22-46-51-mpf-Beast2.log'}
+2025-08-16 22:46:52,039 : INFO : Machine : MPF path: C:\Users\jimhe\mpf\Lib\site-packages\mpf
+2025-08-16 22:46:52,039 : INFO : Machine : Machine path: C:\Users\jimhe\Desktop\Pinball\Homebrew\code\first-pinball
+2025-08-16 22:46:52,039 : INFO : Machine : Platform: win32
+2025-08-16 22:46:52,039 : INFO : Machine : Python executable location: C:\Users\jimhe\mpf\Scripts\python.exe
+2025-08-16 22:46:52,039 : INFO : Machine : Python version: 3.13.7 (64-bit)
+2025-08-16 22:46:52,041 : INFO : Machine : Initializing MPF...
+2025-08-16 22:46:52,239 : INFO : EventManager : Event: ======'machine_var_credits_string'====== Args={'value': 'FREE PLAY', 'prev_value': None, 'change': True}
+2025-08-16 22:46:52,255 : INFO : EventManager : Event: ======'machine_var_master_volume'====== Args={'value': 0.5, 'prev_value': None, 'change': True}
+2025-08-16 22:46:52,255 : INFO : EventManager : Event: ======'machine_var_mpf_version'====== Args={'value': 'Mission Pinball Framework v0.80.0.dev8', 'prev_value': None, 'change': True}
+2025-08-16 22:46:52,255 : INFO : EventManager : Event: ======'machine_var_mpf_extended_version'====== Args={'value': 'Mission Pinball Framework v0.80.0.dev8, Config version:6, Show version: 6, BCP version:1.1', 'prev_value': None, 'change': True}
+2025-08-16 22:46:52,255 : INFO : EventManager : Event: ======'machine_var_python_version'====== Args={'value': '3.13.7', 'prev_value': None, 'change': True}
+2025-08-16 22:46:52,330 : INFO : EventManager : Event: ======'machine_var_platform'====== Args={'value': 'Windows-11-10.0.26100-SP0', 'prev_value': None, 'change': True}
+2025-08-16 22:46:52,330 : INFO : EventManager : Event: ======'machine_var_platform_system'====== Args={'value': 'Windows', 'prev_value': None, 'change': True}
+2025-08-16 22:46:52,330 : INFO : EventManager : Event: ======'machine_var_platform_release'====== Args={'value': '11', 'prev_value': None, 'change': True}
+2025-08-16 22:46:52,330 : INFO : EventManager : Event: ======'machine_var_platform_version'====== Args={'value': '10.0.26100', 'prev_value': None, 'change': True}
+2025-08-16 22:46:52,330 : INFO : EventManager : Event: ======'machine_var_platform_machine'====== Args={'value': 'AMD64', 'prev_value': None, 'change': True}
+2025-08-16 22:46:52,330 : INFO : EventManager : Event: ======'machine_var_log_file_path'====== Args={'value': 'C:\\Users\\jimhe\\Desktop\\Pinball\\Homebrew\\code\\first-pinball\\logs\\2025-08-16-22-46-51-mpf-Beast2.log', 'prev_value': None, 'change': True}
+2025-08-16 22:46:52,330 : INFO : EventManager : Event: ======'init_phase_1'====== Args={}
+2025-08-16 22:46:52,340 : INFO : EventManager : Event: ======'init_phase_2'====== Args={}
+2025-08-16 22:46:52,347 : INFO : EventManager : Event: ======'init_phase_3'====== Args={}
+2025-08-16 22:46:52,348 : INFO : EventManager : Event: ======'init_phase_4'====== Args={}
+2025-08-16 22:46:52,349 : INFO : EventManager : Event: ======'machine_var_audits_events_game_started'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2025-08-16 22:46:52,349 : INFO : EventManager : Event: ======'machine_var_audits_events_game_ended'====== Args={'value': 0, 'prev_value': None, 'change': True}
+2025-08-16 22:46:52,349 : INFO : EventManager : Event: ======'machine_var_audits_player_score'====== Args={'value': {'top': [], 'average': 0, 'total': 0}, 'prev_value': None, 'change': True}
+2025-08-16 22:46:52,349 : INFO : EventManager : Event: ======'init_phase_5'====== Args={}
+2025-08-16 22:46:52,349 : INFO : EventManager : Event: ======'init_done'====== Args={}
+2025-08-16 22:46:52,349 : INFO : EventManager : Event: ======'machine_reset_phase_1'====== Args={}
+2025-08-16 22:46:52,350 : INFO : EventManager : Event: ======'machine_reset_phase_2'====== Args={}
+2025-08-16 22:46:52,350 : INFO : EventManager : Event: ======'machine_reset_phase_3'====== Args={}
+2025-08-16 22:46:52,350 : INFO : EventManager : Event: ======'reset_complete'====== Args={}
+2025-08-16 22:46:52,350 : INFO : EventManager : Event: ======'mode_attract_will_start'====== Args={}
+2025-08-16 22:46:52,350 : INFO : EventManager : Event: ======'mode_attract_starting'====== Args={}
+2025-08-16 22:46:52,350 : INFO : Mode.attract : Started. Priority: 10
+2025-08-16 22:46:52,350 : INFO : EventManager : Event: ======'modes_active_modes_changed'====== Args={}
+2025-08-16 22:46:52,350 : INFO : EventManager : Event: ======'mode_attract_started'====== Args={}
+2025-08-16 22:46:52,350 : INFO : EventManager : Event: ======'collecting_balls_complete'====== Args={}
+2025-08-16 22:46:52,351 : INFO : Machine : Starting the main run loop with active modes: [<Mode.attract>]
+2025-08-16 22:47:05,249 : INFO : Machine : Shutting down...
+2025-08-16 22:47:05,249 : INFO : EventManager : Event: ======'shutdown'====== Args={}
+2025-08-16 22:47:05,250 : INFO : root : MPF run loop ended.
