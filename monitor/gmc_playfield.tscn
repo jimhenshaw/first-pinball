@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjq3h6yko1kbq"]
+
+[ext_resource type="Texture2D" uid="uid://cmagce6wvqoph" path="res://monitor/playfield.jpg" id="1_iabj0"]
+[ext_resource type="Script" uid="uid://b1x13ek0ykyva" path="res://addons/gmc-toolbox/playfield/GMCPlayfield.gd" id="2_f4x4v"]
+[ext_resource type="Script" uid="uid://bc6bqgg7iwxgq" path="res://addons/gmc-toolbox/playfield/GMCLight.gd" id="3_f4x4v"]
+[ext_resource type="Texture2D" uid="uid://u5hp0m0sfd0a" path="res://addons/gmc-toolbox/playfield/inserts/circle-insert.svg" id="3_wifwe"]
+
+[node name="GMCPlayfield" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_iabj0")
+script = ExtResource("2_f4x4v")
+monitor_size = Vector2(817, 1440)
+metadata/_custom_type_script = "uid://b1x13ek0ykyva"
+
+[node name="lights" type="Control" parent="."]
+anchors_preset = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="l_g_lane" type="Sprite2D" parent="lights"]
+position = Vector2(1154, 385)
+scale = Vector2(0.2107, 0.2107)
+texture = ExtResource("3_wifwe")
+script = ExtResource("3_f4x4v")
+
+[node name="l_o_lane" type="Sprite2D" parent="lights"]
+position = Vector2(1330, 374)
+scale = Vector2(0.2107, 0.2107)
+texture = ExtResource("3_wifwe")
+script = ExtResource("3_f4x4v")
+
+[node name="l_l_lane" type="Sprite2D" parent="lights"]
+position = Vector2(1509, 367)
+scale = Vector2(0.2107, 0.2107)
+texture = ExtResource("3_wifwe")
+script = ExtResource("3_f4x4v")
+
+[node name="l_d_lane" type="Sprite2D" parent="lights"]
+position = Vector2(1692, 364)
+scale = Vector2(0.2107, 0.2107)
+texture = ExtResource("3_wifwe")
+script = ExtResource("3_f4x4v")
+
+[node name="l_extra_ball_enable" type="Sprite2D" parent="lights"]
+position = Vector2(222, 844)
+scale = Vector2(0.2107, 0.2107)
+texture = ExtResource("3_wifwe")
+script = ExtResource("3_f4x4v")

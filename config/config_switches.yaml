@@ -9,6 +9,27 @@ switches:
   s_left_lane:
     number:
 
+  #gold lanes switches
+  s_g_lane:
+    number:
+  s_o_lane:
+    number:
+  s_l_lane:
+    number:
+  s_d_lane:
+    number:
+  s_extra_ball:
+    number:
+
+  #bumper switches
+  s_lower_left_bumper:
+    number:
+  s_upper_left_bumper:
+    number:
+  s_upper_right_bumper:
+    number:
+
+
   # Cabinet Switches
   s_flipper_left:
     number:

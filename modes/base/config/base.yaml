@@ -14,10 +14,81 @@ event_player:
   mode_base_will_stop:
     - stop_mode_bumpers
   left_lane_hit: start_mode_hurryup
+  sg_upper_lanes_lit_complete:
+    - turn_on_extra_ball_light
+    - turn_off_upper_lane_lights
+  shot_extra_ball_hit: turn_off_extra_ball_light
+
+
+light_player:
+  turn_on_extra_ball_light:
+    l_extra_ball_enable:
+      color: red
+  turn_off_extra_ball_light:
+    l_extra_ball_enable:
+      color: stop
+  turn_off_upper_lane_lights:
+    l_g_lane:
+      color: stop
+    l_o_lane:
+      color: stop
+    l_l_lane:
+      color: stop
+    l_d_lane:
+      color: stop
 
 shots:
   left_lane:
     switches: s_left_lane
+  
+  #gold shots
+  shot_g_lane:
+    switches: s_g_lane
+    show_tokens:
+      leds: l_g_lane
+  shot_o_lane:
+    switches: s_o_lane
+    show_tokens:
+      leds: l_o_lane
+  shot_l_lane:
+    switches: s_l_lane
+    show_tokens:
+      leds: l_l_lane
+  shot_d_lane:
+    switches: s_d_lane
+    show_tokens:
+      leds: l_d_lane
+
+  #extra ball shot
+  shot_extra_ball:
+    switches: s_extra_ball
+
+  shot_lower_left_bumper:
+    switch: s_lower_left_bumper
+    profile: sp_pops
+    show_tokens:
+      leds: l_lower_wanted_dead_or_alive
+
+  
+shot_groups:
+  sg_upper_lanes: 
+    shots: shot_g_lane, shot_o_lane, shot_l_lane, shot_d_lane
+    reset_events: turn_off_upper_lane_lights
+  sg_pops:
+    shots:  
+      - shot_lower_left_bumper
+    reset_events: ball_ending
+
+shot_profiles:
+  sp_pops:
+    advance_on_hit: true
+    block: true
+    loop: true
+    states: 
+      - name: unlit
+        show: "off"
+      - name: lit
+        show: "on"
 
 slide_player:
   mode_base_started: base_slide

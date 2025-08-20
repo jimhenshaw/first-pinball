@@ -1,0 +1,18 @@
+#config_version=6
+
+lights:
+  #gold lane lights
+  l_g_lane:
+    number:
+  l_o_lane:
+    number:
+  l_l_lane:
+    number:
+  l_d_lane:
+    number:
+  l_extra_ball_enable:
+    number:
+
+  #wanted lights
+  l_lower_wanted_dead_or_alive:
+    number:
