@@ -13,6 +13,7 @@ config:
   - config_lights.yaml
   - config_switches.yaml
   - config_variables.yaml
+  - config_drop_targets.yaml
 
 modes:
   - attract

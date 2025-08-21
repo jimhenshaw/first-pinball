@@ -13,6 +13,24 @@ lights:
   l_extra_ball_enable:
     number:
 
-  #wanted lights
+  #bonus lights
   l_lower_wanted_dead_or_alive:
+    number:
+
+  #multiplier lights
+  l_2x_multiplier:
+    number:
+  l_3x_multiplier:
+    number:
+  l_4x_multiplier:
+    number:
+  l_5x_multiplier:
+    number:
+  
+  #rollover_lights
+  l_top_upper_left_bonus_rollover:
+    number:
+  l_middle_upper_left_bonus_rollover:
+    number:
+  l_bottom_upper_left_bonus_rollover:
     number:

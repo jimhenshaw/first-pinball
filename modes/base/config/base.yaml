@@ -11,6 +11,7 @@ mode:
 event_player:
   mode_base_started:
     - start_mode_bumpers
+    - turn_on_upper_left_rollovers
   mode_base_will_stop:
     - stop_mode_bumpers
   left_lane_hit: start_mode_hurryup
@@ -18,9 +19,22 @@ event_player:
     - turn_on_extra_ball_light
     - turn_off_upper_lane_lights
   shot_extra_ball_hit: turn_off_extra_ball_light
+  shot_multiplier_enable_unlit_hit: 
+    - turn_on_multiplier_enable_light
+    - set_multiplier_enabled
+  shot_multiplier_enable_lit_hit: disable_multiplier
+  disable_multiplier:
+    - turn_off_multiplier_enable_light
+    - set_multiplier_disabled
+  sg_lower_drop_targets_hit{current_player.multiplier_enabled==1}:
+    - increment_multiplier_level
+    - increment_multiplier_light
+    - disable_multiplier
+
 
 
 light_player:
+  turn_on_upper_left_rollovers: l_top_upper_left_bonus_rollover, l_middle_upper_left_bonus_rollover, l_bottom_upper_left_bonus_rollover
   turn_on_extra_ball_light:
     l_extra_ball_enable:
       color: red
@@ -36,6 +50,14 @@ light_player:
       color: stop
     l_d_lane:
       color: stop
+  turn_on_multiplier_enable_light: l_lower_wanted_dead_or_alive
+  turn_off_multiplier_enable_light: 
+    l_lower_wanted_dead_or_alive:
+      color: stop
+  increment_multiplier_light{current_player.multiplier_level==1}: l_2x_multiplier
+  increment_multiplier_light{current_player.multiplier_level==2}: l_3x_multiplier
+  increment_multiplier_light{current_player.multiplier_level==3}: l_4x_multiplier
+  increment_multiplier_light{current_player.multiplier_level==4}: l_5x_multiplier
 
 shots:
   left_lane:
@@ -63,26 +85,32 @@ shots:
   shot_extra_ball:
     switches: s_extra_ball
 
-  shot_lower_left_bumper:
-    switch: s_lower_left_bumper
-    profile: sp_pops
-    show_tokens:
-      leds: l_lower_wanted_dead_or_alive
+  #multipler enable bumpers & rollovers
+  shot_multiplier_enable:
+    switches: s_lower_left_bumper, s_upper_left_bumper, s_upper_right_bumper, s_top_upper_left_bonus_rollover, s_middle_upper_left_bonus_rollover, s_bottom_upper_left_bonus_rollover
+    profile: sp_on_off_loop
+    reset_events: disable_multiplier
 
+  #bonus or multipler (if bonus multipler lit) drop targets
+  shot_lower_drop_target_1:
+    switch: s_lower_drop_target_1
+  shot_lower_drop_target_2:
+    switch: s_lower_drop_target_2
+  shot_lower_drop_target_3:
+    switch: s_lower_drop_target_3
+  shot_lower_drop_target_4:
+    switch: s_lower_drop_target_4
   
 shot_groups:
   sg_upper_lanes: 
     shots: shot_g_lane, shot_o_lane, shot_l_lane, shot_d_lane
     reset_events: turn_off_upper_lane_lights
-  sg_pops:
-    shots:  
-      - shot_lower_left_bumper
-    reset_events: ball_ending
-
+  sg_lower_drop_targets:
+    shots: shot_lower_drop_target_1, shot_lower_drop_target_2, shot_lower_drop_target_3, shot_lower_drop_target_4
+   
 shot_profiles:
-  sp_pops:
+  sp_on_off_loop:
     advance_on_hit: true
-    block: true
     loop: true
     states: 
       - name: unlit
@@ -90,5 +118,18 @@ shot_profiles:
       - name: lit
         show: "on"
 
+
 slide_player:
   mode_base_started: base_slide
+
+variable_player:
+  set_multiplier_enabled:
+    multiplier_enabled:
+      int: 1
+      action: set
+  set_multiplier_disabled:
+    multiplier_enabled:
+      int: 0
+      action: set
+  increment_multiplier_level:
+    multiplier_level: 1

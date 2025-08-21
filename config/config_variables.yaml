@@ -1,2 +1,9 @@
 #config_version=6
 
+  player_vars:
+    multiplier_enabled:
+      value_type: int
+      initial_value: 0
+    multiplier_level:
+      value_type: int
+      initial_value: 0

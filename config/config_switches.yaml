@@ -29,6 +29,23 @@ switches:
   s_upper_right_bumper:
     number:
 
+  #rollover switches
+  s_top_upper_left_bonus_rollover:
+    number:
+  s_middle_upper_left_bonus_rollover:
+    number:
+  s_bottom_upper_left_bonus_rollover:
+    number:  
+
+  #drop targets
+  s_lower_drop_target_1:
+    number:
+  s_lower_drop_target_2:
+    number:
+  s_lower_drop_target_3:
+    number:
+  s_lower_drop_target_4:
+    number:            
 
   # Cabinet Switches
   s_flipper_left:
