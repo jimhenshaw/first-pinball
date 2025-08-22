@@ -12,12 +12,32 @@ event_player:
   mode_base_started:
     - start_mode_bumpers
     - turn_on_upper_left_rollovers
+    - reset_bonus_tracker
+    - turn_on_1k_lights
   mode_base_will_stop:
     - stop_mode_bumpers
-  sg_upper_lanes_lit_complete:
-    - turn_on_extra_ball_light
-    - turn_off_upper_lane_lights
-  shot_extra_ball_hit: turn_off_extra_ball_light
+
+  #handle target hits
+  shot_upper_left_extra_ball_hit: turn_off_upper_left_extra_ball_light
+  shot_middle_left_target_hit.1: show_bonus_light
+
+  #handle showing the bonus light
+  show_bonus_lights{current_player.bonus_tracker >= 40_000}: turn_on_bonus_lights
+  show_bonus_light{current_player.bonus_tracker < 40_000}:
+    - turn_off_bonus_lights
+    - handle_20k_light
+    - handle_10k_light
+    - turn_on_1k_lights
+  handle_20k_light{current_player.bonus_tracker >= 20_000}:
+    - turn_on_20k_light
+    - decrement_bonus_tracker_20k
+  handle_10k_light{current_player.bonus_tracker >= 10_000}:
+    - turn_on_10k_light
+    - decrement_bonus_tracker_10k
+
+  
+
+  #handle multiplier hits
   shot_multiplier_enable_unlit_hit: 
     - turn_on_multiplier_enable_light
     - set_multiplier_enabled
@@ -30,57 +50,112 @@ event_player:
     - show_multiplier_light
     - disable_multiplier
 
+  
+  #handle gold/ship lane events
+  shot_g_lane_unlit_hit: turn_on_g_lane_lights
+  shot_o_lane_unlit_hit: turn_on_o_lane_lights
+  shot_l_lane_unlit_hit: turn_on_l_lane_lights
+  shot_d_lane_unlit_hit: turn_on_d_lane_lights
+  sg_gold_lanes_lit_complete:
+    - turn_on_upper_left_extra_ball_light
+  turn_off_lane_lights: turn_off_g_lane_lights, turn_off_o_lane_lights, turn_off_l_lane_lights, turn_off_d_lane_lights
+  turn_on_lane_lights: turn_on_g_lane_lights, turn_on_o_lane_lights, turn_on_l_lane_lights, turn_on_d_lane_lights
+
 
 
 light_player:
   turn_on_upper_left_rollovers: l_top_upper_left_bonus_rollover, l_middle_upper_left_bonus_rollover, l_bottom_upper_left_bonus_rollover
-  turn_on_extra_ball_light:
-    l_extra_ball_enable:
+  turn_on_upper_left_extra_ball_light:
+    l_upper_left_extra_ball_enable:
       color: red
-  turn_off_extra_ball_light:
-    l_extra_ball_enable:
+  turn_off_upper_left_extra_ball_light:
+    l_upper_left_extra_ball_enable:
       color: stop
-  turn_off_upper_lane_lights:
-    l_g_lane:
+  #lane lights
+  turn_on_g_lane_lights: l_g_upper_lane, l_s_lower_lane
+  turn_on_o_lane_lights: l_o_upper_lane, l_h_lower_lane
+  turn_on_l_lane_lights: l_l_upper_lane, l_i_lower_lane
+  turn_on_d_lane_lights: l_d_upper_lane, l_p_lower_lane
+  turn_off_g_lane_lights: 
+    l_g_upper_lane:
       color: stop
-    l_o_lane:
+    l_s_lower_lane:
       color: stop
-    l_l_lane:
+  turn_off_o_lane_lights: 
+    l_o_upper_lane:
       color: stop
-    l_d_lane:
+    l_h_lower_lane:
       color: stop
-  turn_on_multiplier_enable_light: l_lower_wanted_dead_or_alive
+  turn_off_l_lane_lights: 
+    l_l_upper_lane:
+      color: stop
+    l_i_lower_lane:
+      color: stop
+  turn_off_d_lane_lights: 
+    l_d_upper_lane:
+      color: stop
+    l_p_lower_lane:
+      color: stop
+
+  #multiplier lights
+  turn_on_multiplier_enable_light: l_advance_multiplier
   turn_off_multiplier_enable_light: 
-    l_lower_wanted_dead_or_alive:
+    l_advance_multiplier:
       color: stop
   show_multiplier_light{current_player.multiplier_level==2}: l_2x_multiplier
   show_multiplier_light{current_player.multiplier_level==3}: l_3x_multiplier
   show_multiplier_light{current_player.multiplier_level==4}: l_4x_multiplier
   show_multiplier_light{current_player.multiplier_level==5}: l_5x_multiplier
 
+  #bonus lights
+  turn_off_bonus_lights:
+    l_1k_bonus:
+      color: stop
+    l_2k_bonus:
+      color: stop
+    l_3k_bonus:
+      color: stop
+    l_4k_bonus:
+      color: stop
+    l_5k_bonus:
+      color: stop
+    l_6k_bonus:
+      color: stop
+    l_7k_bonus:
+      color: stop
+    l_8k_bonus:
+      color: stop
+    l_9k_bonus:
+      color: stop
+    l_10k_bonus:
+      color: stop
+    l_20k_bonus:
+      color: stop
+  turn_on_bonus_lights: l_1k_bonus, l_2k_bonus, l_3k_bonus, l_4k_bonus, l_5k_bonus, l_6k_bonus, l_7k_bonus, l_8k_bonus, l_9k_bonus, l_10k_bonus, l_20k_bonus
+  turn_on_20k_light: l_20k_bonus
+  turn_on_10k_light: l_10k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==1_000}: l_1k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==2_000}: l_2k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==3_000}: l_3k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==4_000}: l_4k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==5_000}: l_5k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==6_000}: l_6k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==7_000}: l_7k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==8_000}: l_8k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==9_000}: l_9k_bonus
+  
+
 shots:
   
-  #gold shots
+  #gold/ship shots
   shot_g_lane:
-    switches: s_g_lane
-    show_tokens:
-      leds: l_g_lane
+    switches: s_g_upper_lane, s_s_lower_lane
   shot_o_lane:
-    switches: s_o_lane
-    show_tokens:
-      leds: l_o_lane
+    switches: s_o_upper_lane, s_h_lower_lane
   shot_l_lane:
-    switches: s_l_lane
-    show_tokens:
-      leds: l_l_lane
+    switches: s_l_upper_lane, s_i_lower_lane
   shot_d_lane:
-    switches: s_d_lane
-    show_tokens:
-      leds: l_d_lane
-
-  #extra ball shot
-  shot_extra_ball:
-    switches: s_extra_ball
+    switches: s_d_upper_lane, s_p_lower_lane
 
   #multiplier enable bumpers & rollovers
   shot_multiplier_enable:
@@ -97,9 +172,19 @@ shots:
     switch: s_middle_drop_target_3
   shot_middle_drop_target_4:
     switch: s_middle_drop_target_4
+
+#stand up target shots
+  shot_upper_left_extra_ball:
+    switches: s_upper_left_extra_ball
+  shot_middle_left_target:
+    switch: s_middle_left_target
+  shot_middle_right_extra_ball:
+    switches: s_middle_right_extra_ball
+  shot_special_target:
+    switches: s_special_target
   
 shot_groups:
-  sg_upper_lanes: 
+  sg_gold_lanes: 
     shots: shot_g_lane, shot_o_lane, shot_l_lane, shot_d_lane
     reset_events: turn_off_upper_lane_lights
   sg_middle_drop_targets:
@@ -130,3 +215,23 @@ variable_player:
       action: set
   increment_multiplier_level{current_player.multiplier_level < 5}: #multiplier level is capped at 5
     multiplier_level: 1
+
+  #standup targets
+  shot_middle_left_target_hit.2:
+    score: 500
+    bonus: 1000
+    bonus_tracker:
+      int: current_player.bonus
+      action: set
+  decrement_bonus_tracker_20k:
+    bonus_tracker:
+      int: current_player.bonus_tracker - 20_000
+      action: set
+  decrement_bonus_tracker_10k:
+    bonus_tracker:
+      int: current_player.bonus_tracker - 10_000
+      action: set
+  reset_bonus_tracker:
+    bonus_tracker:
+      int: 1_000
+      action: set

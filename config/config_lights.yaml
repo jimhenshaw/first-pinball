@@ -2,22 +2,54 @@
 
 lights:
   #gold lane lights
-  l_g_lane:
+  l_g_upper_lane:
     number:
-  l_o_lane:
+  l_o_upper_lane:
     number:
-  l_l_lane:
+  l_l_upper_lane:
     number:
-  l_d_lane:
+  l_d_upper_lane:
     number:
-  l_extra_ball_enable:
+  l_s_lower_lane:
+    number:
+  l_h_lower_lane:
+    number:
+  l_i_lower_lane:
+    number:
+  l_p_lower_lane:
+    number:
+  l_upper_left_extra_ball_enable:
+    number:
+  l_white_drop_target_bonus_enabled:
     number:
 
   #bonus lights
-  l_lower_wanted_dead_or_alive:
+  l_1k_bonus:
     number:
-
+  l_2k_bonus:
+    number:
+  l_3k_bonus:
+    number:
+  l_4k_bonus:
+    number:
+  l_5k_bonus:
+    number:
+  l_6k_bonus:
+    number:
+  l_7k_bonus:
+    number:
+  l_8k_bonus:
+    number:
+  l_9k_bonus:
+    number:
+  l_10k_bonus:
+    number:
+  l_20k_bonus:
+    number:
+  
   #multiplier lights
+  l_advance_multiplier:
+    number:
   l_2x_multiplier:
     number:
   l_3x_multiplier:
@@ -26,6 +58,7 @@ lights:
     number:
   l_5x_multiplier:
     number:
+
   
   #rollover_lights
   l_top_upper_left_bonus_rollover:

@@ -7,3 +7,9 @@
     multiplier_level: #starts at 1x multiplier, can be incremented up to 5x multiplier. Gets incremented 1 level at a time
       value_type: int
       initial_value: 1
+    bonus:
+      value_type: int
+      initial_value: 1000
+    # bonus_light_tracker: #used to calculate which bonus lights should be on
+    #   value_type: int
+    #   initial_value: 1000

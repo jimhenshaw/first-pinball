@@ -2,15 +2,21 @@
 
 switches:
   #gold lanes switches
-  s_g_lane:
+  s_g_upper_lane:
     number:
-  s_o_lane:
+  s_o_upper_lane:
     number:
-  s_l_lane:
+  s_l_upper_lane:
     number:
-  s_d_lane:
+  s_d_upper_lane:
     number:
-  s_extra_ball:
+  s_s_lower_lane:
+    number:
+  s_h_lower_lane:
+    number:
+  s_i_lower_lane:
+    number:
+  s_p_lower_lane:
     number:
 
   #bumper switches
@@ -37,7 +43,25 @@ switches:
   s_middle_drop_target_3:
     number:
   s_middle_drop_target_4:
-    number:        
+    number:    
+
+  #stand up targets
+  s_upper_left_extra_ball:
+    number:
+    debounce: normal
+    ignore_window_ms: 1000ms
+  s_middle_left_target:
+    number:
+    debounce: normal
+    ignore_window_ms: 1000ms
+  s_middle_right_extra_ball:
+    number:
+    debounce: normal
+    ignore_window_ms: 1000ms
+  s_special_target:
+    number:
+    debounce: normal
+    ignore_window_ms: 1000ms
 
   #sling shot
   s_sling_left:
