@@ -10,6 +10,12 @@
     bonus:
       value_type: int
       initial_value: 1000
-    # bonus_light_tracker: #used to calculate which bonus lights should be on
-    #   value_type: int
-    #   initial_value: 1000
+    bonus_tracker: #used to calculate which bonus lights should be on
+      value_type: int
+      initial_value: 1000
+    score_bonus_enabled:
+      value_type: int
+      initial_value: 0
+    spinner_bonus_enabled:
+      value_type: int
+      initial_value: 0

@@ -1,7 +1,28 @@
 #config_version=6
 
+#NOTE: includes switches and a spinner at the bottom of the page
+
 switches:
-  #gold lanes switches
+  #lane switches
+  s_upper_left_lane:
+    number:
+  s_right_inner_lane:
+    number:
+  s_right_outer_lane:
+    number:
+  s_right_outer_drain_lane:
+    number:
+  s_left_outer_drain_lane:
+    number:
+  s_left_50_50_lane:
+    number:
+  s_left_inner_lane:
+    number:
+  s_upper_right_shooter_return_lane:
+    number:
+  
+
+  #gold/ship lanes switches, these are paired together so g activates like s 
   s_g_upper_lane:
     number:
   s_o_upper_lane:
@@ -34,6 +55,10 @@ switches:
     number:
   s_bottom_upper_left_bonus_rollover:
     number:  
+  s_left_inlane_rollover:
+    number:
+  s_right_inlane_rollover:
+    number:
 
   #drop targets
   s_middle_drop_target_1:
@@ -43,25 +68,49 @@ switches:
   s_middle_drop_target_3:
     number:
   s_middle_drop_target_4:
-    number:    
+    number:
+  s_red_drop_target_1:
+    number:
+  s_red_drop_target_2:
+    number:
+  s_red_drop_target_3:
+    number:
+  s_red_drop_target_4:
+    number:
+  s_white_drop_target_1:
+    number:
+  s_white_drop_target_2:
+    number:
+  s_white_drop_target_3:
+    number:
+
 
   #stand up targets
   s_upper_left_extra_ball:
     number:
-    debounce: normal
-    ignore_window_ms: 1000ms
+    # debounce: normal
+    # ignore_window_ms: 1000ms
   s_middle_left_target:
     number:
-    debounce: normal
-    ignore_window_ms: 1000ms
+    # debounce: normal
+    # ignore_window_ms: 1000ms
   s_middle_right_extra_ball:
     number:
-    debounce: normal
-    ignore_window_ms: 1000ms
+    # debounce: normal
+    # ignore_window_ms: 1000ms
   s_special_target:
     number:
-    debounce: normal
-    ignore_window_ms: 1000ms
+    # debounce: normal
+    # ignore_window_ms: 1000ms
+
+  s_score_bonus_kicker:
+    number:
+
+
+  #spinner switch
+  s_middle_spinner:
+    number:
+
 
   #sling shot
   s_sling_left:
@@ -77,6 +126,7 @@ switches:
   s_start:
     number:
     tags: start
+
   # Trough Switches
   s_trough_1:
     number:
@@ -86,3 +136,13 @@ switches:
     number:
   s_plunger_lane:
     number:
+
+  #drain switch
+  s_drain:
+    number:
+
+#SPINNER SECTION
+spinners:
+  spin_middle_spinner:
+    switch: s_middle_spinner
+    active_ms: 500

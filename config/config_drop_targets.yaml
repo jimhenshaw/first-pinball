@@ -9,3 +9,17 @@ drop_targets:
     switch: s_middle_drop_target_3
   dt_middle_4:
     switch: s_middle_drop_target_4
+  dt_red_1:
+    switch: s_red_drop_target_1
+  dt_red_2:
+    switch: s_red_drop_target_2
+  dt_red_3:
+    switch: s_red_drop_target_3
+  dt_red_4:
+    switch: s_red_drop_target_4
+  dt_white_1:
+    switch: s_white_drop_target_1
+  dt_white_2:
+    switch: s_white_drop_target_2
+  dt_white_3:
+    switch: s_white_drop_target_3

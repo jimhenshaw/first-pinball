@@ -18,10 +18,6 @@ lights:
     number:
   l_p_lower_lane:
     number:
-  l_upper_left_extra_ball_enable:
-    number:
-  l_white_drop_target_bonus_enabled:
-    number:
 
   #bonus lights
   l_1k_bonus:
@@ -46,6 +42,21 @@ lights:
     number:
   l_20k_bonus:
     number:
+    
+  #bonus unlock lights
+  l_score_bonus_enabled:
+    number:
+  l_spinner_bonus_enabled:
+    number:
+  l_white_drop_target_bonus_enabled:
+    number:
+  l_upper_left_extra_ball_enabled:
+    number:
+  l_right_extra_ball_enabled:
+    number:
+  l_special_enabled:
+    number:
+
   
   #multiplier lights
   l_advance_multiplier:
@@ -59,11 +70,14 @@ lights:
   l_5x_multiplier:
     number:
 
-  
   #rollover_lights
   l_top_upper_left_bonus_rollover:
     number:
   l_middle_upper_left_bonus_rollover:
     number:
   l_bottom_upper_left_bonus_rollover:
+    number:
+  l_left_inlane_rollover:
+    number:
+  l_right_inlane_rollover:
     number:
