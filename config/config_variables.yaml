@@ -1,9 +1,9 @@
 #config_version=6
 
   player_vars:
-    multiplier_enabled:
+    multiplier_enabled: #true = 1, false = 0, used to turn on advance multiplier light. If it's true, you can increment the multipler lights.
       value_type: int
       initial_value: 0
-    multiplier_level:
+    multiplier_level: #starts at 1x multiplier, can be incremented up to 5x multiplier. Gets incremented 1 level at a time
       value_type: int
-      initial_value: 0
+      initial_value: 1

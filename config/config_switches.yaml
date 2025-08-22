@@ -1,14 +1,6 @@
 #config_version=6
 
 switches:
-  # Playfield Switches
-  s_bumper_left:
-    number:
-  s_bumper_right:
-    number:
-  s_left_lane:
-    number:
-
   #gold lanes switches
   s_g_lane:
     number:
@@ -38,14 +30,18 @@ switches:
     number:  
 
   #drop targets
-  s_lower_drop_target_1:
+  s_middle_drop_target_1:
     number:
-  s_lower_drop_target_2:
+  s_middle_drop_target_2:
     number:
-  s_lower_drop_target_3:
+  s_middle_drop_target_3:
     number:
-  s_lower_drop_target_4:
-    number:            
+  s_middle_drop_target_4:
+    number:        
+
+  #sling shot
+  s_sling_left:
+    number:    
 
   # Cabinet Switches
   s_flipper_left:

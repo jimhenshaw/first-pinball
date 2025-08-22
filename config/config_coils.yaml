@@ -3,3 +3,21 @@
 coils:
     c_trough_eject:
         number:
+    c_left_flipper:
+        number:
+    c_right_flipper:
+        number:
+    c_upper_left_flipper:
+        number:
+    c_upper_right_flipper:
+        number:
+    c_far_right_flipper:
+        number:
+    c_sling_left:
+        number:
+        default_pulse_ms: 15
+
+autofire_coils:
+    ac_slingshot_left:
+        coil: c_sling_left
+        switch: s_sling_left
