@@ -19,7 +19,7 @@ event_player:
     - stop_mode_bumpers
 
   #handle adding to bonus and updating lights, also checks if it should enable top right bonus shot
-  add_bonus:
+  add_bonus{current_player.bonus < 29_000}:
     - add_bonus_1000
     - show_bonus_light
     - check_bonus_enabled
@@ -41,7 +41,6 @@ event_player:
   spinner_spin_middle_spinner_hit{current_player.spinner_bonus_enabled==1}: add_bonus
     
   #handle showing the bonus light
-  show_bonus_light{current_player.bonus_tracker >= 40_000}: turn_on_bonus_lights
   show_bonus_light{current_player.bonus_tracker < 40_000}:
     - turn_off_bonus_lights
     - handle_20k_light
@@ -364,6 +363,7 @@ variable_player:
       int: 1
       action: set
 
+#EXTRA BALLS
 extra_balls:
   eb_extra_ball:
     award_events: award_extra_ball
