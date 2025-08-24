@@ -19,3 +19,6 @@
     spinner_bonus_enabled:
       value_type: int
       initial_value: 0
+    enable_upper_left_extra_ball:
+      value_type: int
+      initial_value: 0

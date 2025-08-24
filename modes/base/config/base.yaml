@@ -25,10 +25,12 @@ event_player:
     - check_bonus_enabled
 
   #handle target hits
-  shot_upper_left_extra_ball_hit: turn_off_upper_left_extra_ball_light
-  shot_middle_left_target_hit: 
-    - score_500
-    - add_bonus
+  shot_upper_left_extra_ball_hit{current_player.upper_left_extra_ball_enabled==1}: 
+    - turn_off_upper_left_extra_ball_light
+    - disable_upper_left_extra_ball
+    - turn_on_shoot_again_light
+    - award_extra_ball
+
   shot_inlanes_hit: 
     - score_500
     - add_bonus
@@ -80,16 +82,25 @@ event_player:
 
   #handle lanes
   #handle upper left lane
-  shot_upper_left_lane_hit:
+  shot_500_add_bonus_hit:
     - score_500
     - add_bonus
+  shot_3000_point_lane_hit:
+    - score_3_000
+  shot_10_000_point_lane_hit:
+    - score_10_000
+  shot_500_point_letter_lane_hit:
+    - score_500
+  
   
   #handle gold/ship lane events
   shot_g_lane_unlit_hit: turn_on_g_lane_lights
   shot_o_lane_unlit_hit: turn_on_o_lane_lights
   shot_l_lane_unlit_hit: turn_on_l_lane_lights
   shot_d_lane_unlit_hit: turn_on_d_lane_lights
-  sg_gold_lanes_lit_complete: turn_on_upper_left_extra_ball_light
+  sg_gold_lanes_lit_complete:
+    - enable_upper_left_extra_ball
+    - turn_on_upper_left_extra_ball_light
   turn_off_lane_lights: turn_off_g_lane_lights, turn_off_o_lane_lights, turn_off_l_lane_lights, turn_off_d_lane_lights
   turn_on_lane_lights: turn_on_g_lane_lights, turn_on_o_lane_lights, turn_on_l_lane_lights, turn_on_d_lane_lights
 
@@ -193,16 +204,20 @@ light_player:
     l_spinner_bonus_enabled:
       color: stop
 
+  turn_on_shoot_again_light: l_shoot_again_enabled
+  turn_off_shoot_again_light:
+    l_shoot_again_enabled:
+      color: stop
+
 shots:
   
   #lane shots
-  #inlane shots
   shot_inlanes:
     switches: s_left_inlane_rollover, s_right_inlane_rollover
-
-  #upper left lane shot
-  shot_upper_left_lane:
-    switches: s_upper_left_lane
+  shot_500_add_bonus:
+    switches: s_upper_left_lane, s_right_inner_lane, s_middle_left_target, s_upper_left_extra_ball, s_upper_right_shooter_return_lane
+  shot_3000_point_lane:
+    switches: s_left_50_50_lane, s_right_outer_lane
 
   #gold/ship lane shots
   shot_g_lane:
@@ -213,6 +228,8 @@ shots:
     switches: s_l_upper_lane, s_i_lower_lane
   shot_d_lane:
     switches: s_d_upper_lane, s_p_lower_lane
+  shot_500_point_letter_lane: 
+    switches: s_g_upper_lane, s_o_upper_lane, s_l_upper_lane, s_d_upper_lane, s_s_lower_lane, s_h_lower_lane, s_i_lower_lane, s_p_lower_lane
 
   #multiplier enable bumpers & rollovers
   shot_multiplier_enable:
@@ -233,8 +250,6 @@ shots:
 #stand up target shots
   shot_upper_left_extra_ball:
     switches: s_upper_left_extra_ball
-  shot_middle_left_target:
-    switch: s_middle_left_target
   shot_middle_right_extra_ball:
     switches: s_middle_right_extra_ball
   shot_special_target:
@@ -259,7 +274,6 @@ shot_profiles:
         show: "off"
       - name: lit
         show: "on"
-
 
 slide_player:
   mode_base_started: base_slide
@@ -288,6 +302,10 @@ variable_player:
     score: 100
   score_500:
     score: 500
+  score_3_000:
+    score: 3_000
+  score_10_000:
+    score: 10_000
 
   #set the bonus_tracker equal to the current_player.bonus so you can decrement it as needed to display the 20k and 10k lights as well as one of the 1k lights
   set_bonus_tracker:
@@ -309,6 +327,7 @@ variable_player:
       int: 0
       action: set
 
+  #bonus tracker allows us to keep track of bonus lights without affecting the actual bonus value
   decrement_bonus_tracker_20k:
     bonus_tracker:
       int: current_player.bonus_tracker - 20_000
@@ -317,6 +336,8 @@ variable_player:
     bonus_tracker:
       int: current_player.bonus_tracker - 10_000
       action: set
+
+  #score bonus flag
   enable_score_bonus:
     score_bonus_enabled:
       int: 1
@@ -325,9 +346,25 @@ variable_player:
     score_bonus_enabled:
       int: 0
       action: set
+  
   score_bonus:
     score: current_player.bonus * current_player.multiplier_level
   reset_bonus:
     bonus:
       int: 1000
       action: set
+
+  #upper left extra ball flag
+  enable_upper_left_extra_ball:
+    upper_left_extra_ball_enabled:
+      int: 1
+      action: set
+  disable_upper_left_extra_ball:
+    upper_left_extra_ball_enabled:
+      int: 1
+      action: set
+
+extra_balls:
+  eb_extra_ball:
+    award_events: award_extra_ball
+    max_per_game: 3

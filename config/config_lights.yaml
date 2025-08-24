@@ -56,6 +56,8 @@ lights:
     number:
   l_special_enabled:
     number:
+  l_shoot_again_enabled:
+    number:
 
   
   #multiplier lights
