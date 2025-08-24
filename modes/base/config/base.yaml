@@ -18,23 +18,28 @@ event_player:
   mode_base_will_stop:
     - stop_mode_bumpers
 
-  update_bonus:
+  #handle adding to bonus and updating lights, also checks if it should enable top right bonus shot
+  add_bonus:
+    - add_bonus_1000
     - show_bonus_light
     - check_bonus_enabled
 
   #handle target hits
   shot_upper_left_extra_ball_hit: turn_off_upper_left_extra_ball_light
-  shot_middle_left_target_hit.1: update_bonus
-  shot_inlanes_hit.1: 
-    - update_bonus
+  shot_middle_left_target_hit: 
+    - score_500
+    - add_bonus
+  shot_inlanes_hit: 
+    - score_500
+    - add_bonus
     - turn_on_spinner_bonus_enabled_light
    
-  spinner_spin_middle_spinner_hit{current_player.spinner_bonus_enabled==1}:
-    - update_bonus
-
+  #handle spinner hits
+  spinner_spin_middle_spinner_hit: score_100
+  spinner_spin_middle_spinner_hit{current_player.spinner_bonus_enabled==1}: add_bonus
     
   #handle showing the bonus light
-  show_bonus_lights{current_player.bonus_tracker >= 40_000}: turn_on_bonus_lights
+  show_bonus_light{current_player.bonus_tracker >= 40_000}: turn_on_bonus_lights
   show_bonus_light{current_player.bonus_tracker < 40_000}:
     - turn_off_bonus_lights
     - handle_20k_light
@@ -49,9 +54,15 @@ event_player:
 
   check_bonus_enabled{current_player.bonus >= 20_000} :
     - enable_score_bonus
-    - turn_on_bonus_enabled
+    - turn_on_bonus_enabled_light
 
-  shot_score_bonus_hit{current_player.score_bonus_enabled==1}: score_bonus
+  shot_score_bonus_hit{current_player.score_bonus_enabled==1}:
+    - score_bonus
+    - reset_bonus
+    - reset_bonus_tracker
+    - show_bonus_light
+    - disable_score_bonus
+    - turn_off_bonus_enabled_light
 
   #handle multiplier hits
   shot_multiplier_enable_unlit_hit: 
@@ -63,27 +74,32 @@ event_player:
     - set_multiplier_disabled
   sg_middle_drop_targets_hit{current_player.multiplier_enabled==1}:
     - increment_multiplier_level
+    - turn_off_multiplier_lights
     - show_multiplier_light
     - disable_multiplier
 
+  #handle lanes
+  #handle upper left lane
+  shot_upper_left_lane_hit:
+    - score_500
+    - add_bonus
+    - show_bonus_light
+    - check_bonus_enabled
+  
   #handle gold/ship lane events
   shot_g_lane_unlit_hit: turn_on_g_lane_lights
   shot_o_lane_unlit_hit: turn_on_o_lane_lights
   shot_l_lane_unlit_hit: turn_on_l_lane_lights
   shot_d_lane_unlit_hit: turn_on_d_lane_lights
-  sg_gold_lanes_lit_complete:
-    - turn_on_upper_left_extra_ball_light
+  sg_gold_lanes_lit_complete: turn_on_upper_left_extra_ball_light
   turn_off_lane_lights: turn_off_g_lane_lights, turn_off_o_lane_lights, turn_off_l_lane_lights, turn_off_d_lane_lights
   turn_on_lane_lights: turn_on_g_lane_lights, turn_on_o_lane_lights, turn_on_l_lane_lights, turn_on_d_lane_lights
 
-
-
-
+  
+#LIGHT PLAYER SECTION
 light_player:
   turn_on_rollovers: l_top_upper_left_bonus_rollover, l_middle_upper_left_bonus_rollover, l_bottom_upper_left_bonus_rollover, l_left_inlane_rollover, l_right_inlane_rollover
-  turn_on_upper_left_extra_ball_light:
-    l_upper_left_extra_ball_enabled:
-      color: red
+  turn_on_upper_left_extra_ball_light: l_upper_left_extra_ball_enabled
   turn_off_upper_left_extra_ball_light:
     l_upper_left_extra_ball_enabled:
       color: stop
@@ -122,6 +138,15 @@ light_player:
   show_multiplier_light{current_player.multiplier_level==3}: l_3x_multiplier
   show_multiplier_light{current_player.multiplier_level==4}: l_4x_multiplier
   show_multiplier_light{current_player.multiplier_level==5}: l_5x_multiplier
+  turn_off_multiplier_lights:
+    l_2x_multiplier:
+      color: stop
+    l_3x_multiplier:
+      color: stop
+    l_4x_multiplier:
+      color: stop
+    l_5x_multiplier:
+      color: stop
 
   #bonus lights
   turn_off_bonus_lights:
@@ -160,8 +185,8 @@ light_player:
   turn_on_1k_lights{current_player.bonus_tracker==8_000}: l_8k_bonus
   turn_on_1k_lights{current_player.bonus_tracker==9_000}: l_9k_bonus
   
-  turn_on_bonus_enabled: l_score_bonus_enabled
-  turn_off_bonus_enabled: 
+  turn_on_bonus_enabled_light: l_score_bonus_enabled
+  turn_off_bonus_enabled_light: 
     l_score_bonus_enabled:
       color: stop
 
@@ -172,7 +197,16 @@ light_player:
 
 shots:
   
-  #gold/ship shots
+  #lane shots
+  #inlane shots
+  shot_inlanes:
+    switches: s_left_inlane_rollover, s_right_inlane_rollover
+
+  #upper left lane shot
+  shot_upper_left_lane:
+    switches: s_upper_left_lane
+
+  #gold/ship lane shots
   shot_g_lane:
     switches: s_g_upper_lane, s_s_lower_lane
   shot_o_lane:
@@ -211,9 +245,6 @@ shots:
   shot_score_bonus:
     switches: s_score_bonus_kicker
 
-  shot_inlanes:
-    switches: s_left_inlane_rollover, s_right_inlane_rollover
-
 shot_groups:
   sg_gold_lanes: 
     shots: shot_g_lane, shot_o_lane, shot_l_lane, shot_d_lane
@@ -246,30 +277,31 @@ variable_player:
       action: set
   increment_multiplier_level{current_player.multiplier_level < 5}: #multiplier level is capped at 5
     multiplier_level: 1
-
-  #standup targets
-  shot_middle_left_target_hit.2: #.2 makes this a higher priority than the event player's copy of this event. This will execute before event player as that copy has a .1 (lower priority)
-    score: 500
+  
+  #add 1000 to bonus and set the bonus tracker equal to the new bonus value
+  add_bonus_1000:
     bonus: 1000
     bonus_tracker:
       int: current_player.bonus
       action: set
 
-  shot_inlanes_hit.2:
-    score: 500
-    bonus: 1000
-    bonus_tracker:
-      int: current_player.bonus
-      action: set
-    spinner_bonus_enabled:
-      int: 1
-      action: set
-
-  #handle spinner scoring
-  spinner_spin_middle_spinner_hit:
+  #add to score
+  score_100:
     score: 100
-  spinner_spin_middle_spinner_hit{current_player.spinner_bonus_enabled==1}:
-    bonus: 1000
+  score_500:
+    score: 500
+
+  #set the bonus_tracker equal to the current_player.bonus so you can decrement it as needed to display the 20k and 10k lights as well as one of the 1k lights
+  set_bonus_tracker:
+    bonus_tracker:
+      int: current_player.bonus
+      action: set
+  reset_bonus_tracker:
+    bonus_tracker:
+      int: 1_000
+      action: set
+
+  #turns spinner bonus on/off
   enable_spinner_bonus:
     spinner_bonus_enabled:
       int: 1
@@ -287,10 +319,6 @@ variable_player:
     bonus_tracker:
       int: current_player.bonus_tracker - 10_000
       action: set
-  reset_bonus_tracker:
-    bonus_tracker:
-      int: 1_000
-      action: set
   enable_score_bonus:
     score_bonus_enabled:
       int: 1
@@ -301,3 +329,7 @@ variable_player:
       action: set
   score_bonus:
     score: current_player.bonus * current_player.multiplier_level
+  reset_bonus:
+    bonus:
+      int: 1000
+      action: set
