@@ -83,8 +83,6 @@ event_player:
   shot_upper_left_lane_hit:
     - score_500
     - add_bonus
-    - show_bonus_light
-    - check_bonus_enabled
   
   #handle gold/ship lane events
   shot_g_lane_unlit_hit: turn_on_g_lane_lights
