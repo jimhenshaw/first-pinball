@@ -40,10 +40,16 @@ event_player:
     - score_500
     - add_bonus
     - turn_on_spinner_bonus_enabled_light
+    - enable_spinner_bonus
    
   #handle spinner hits
   spinner_spin_middle_spinner_hit: score_100
   spinner_spin_middle_spinner_hit{current_player.spinner_bonus_enabled==1}: add_bonus
+
+  #handle disabling the spinner
+  sg_spinner_disablers_hit: 
+    - turn_off_spinner_bonus_enabled_light
+    - disable_spinner_bonus
     
   #handle showing the bonus light
   show_bonus_light{current_player.bonus_tracker < 40_000}:
@@ -134,7 +140,7 @@ event_player:
     - add_bonus
   sg_red_drop_targets_complete:
     - reset_upper_left_drop_targets
-  sg_red_drop_targets_complete{current_player.free_game_awarded==0}:
+  sg_red_drop_targets_complete{current_player.free_game_awarded==0}: #will only award a free game once
     - enable_special
     - turn_on_special_light
   sg_white_drop_targets_complete:
@@ -266,6 +272,8 @@ shots:
     switches: s_upper_left_lane, s_right_inner_lane, s_middle_left_target, s_upper_left_extra_ball, s_upper_right_shooter_return_lane
   shot_3000_point_lane:
     switches: s_left_50_50_lane, s_right_outer_lane
+  shot_10_000_point_lane:
+    switches: s_left_outer_drain_lane, s_right_outer_drain_lane
 
   #gold/ship lane shots
   shot_g_lane:
@@ -325,6 +333,12 @@ shots:
   shot_score_bonus:
     switches: s_score_bonus_kicker
 
+  shot_special_targets: #used to shorten spinner disablers
+    switches: s_upper_left_extra_ball, s_middle_right_extra_ball, s_special_target, s_score_bonus_kicker
+  
+  shot_all_drop_targets: #used to shorten spinner disablers
+    switches: s_middle_drop_target_1, s_middle_drop_target_2, s_middle_drop_target_3, s_middle_drop_target_4, s_red_drop_target_1, s_red_drop_target_2, s_red_drop_target_3, s_red_drop_target_4, s_white_drop_target_1, s_white_drop_target_2, s_white_drop_target_3
+
 shot_groups:
   sg_gold_lanes: 
     shots: shot_g_lane, shot_o_lane, shot_l_lane, shot_d_lane
@@ -335,6 +349,8 @@ shot_groups:
     shots: shot_white_drop_target_1, shot_white_drop_target_2, shot_white_drop_target_3
   sg_red_drop_targets:
     shots: shot_red_drop_target_1, shot_red_drop_target_2, shot_red_drop_target_3, shot_red_drop_target_4
+  sg_spinner_disablers:
+    shots: shot_500_point_letter_lane, shot_500_add_bonus, shot_3000_point_lane, shot_multiplier_enable, shot_all_drop_targets, shot_special_targets, shot_10_000_point_lane
    
 shot_profiles:
   sp_on_off_loop:
