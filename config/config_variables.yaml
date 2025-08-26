@@ -22,3 +22,12 @@
     enable_upper_left_extra_ball:
       value_type: int
       initial_value: 0
+    white_bonus_enabled:
+      value_type: int
+      initial_value: 0
+    special_enabled:
+      value_type: int
+      initial_value: 0
+    free_game_awarded:
+      value_type: int
+      initial_value: 0

@@ -16,8 +16,16 @@ coils:
     c_sling_left:
         number:
         default_pulse_ms: 15
+    c_middle_drop_target:
+        number:
+    c_upper_left_drop_target:
+        number:
 
 autofire_coils:
     ac_slingshot_left:
         coil: c_sling_left
         switch: s_sling_left
+
+coil_player:
+    reset_middle_drop_targets: c_middle_drop_target
+    reset_upper_left_drop_targets: c_upper_left_drop_target

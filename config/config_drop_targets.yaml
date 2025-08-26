@@ -23,3 +23,20 @@ drop_targets:
     switch: s_white_drop_target_2
   dt_white_3:
     switch: s_white_drop_target_3
+
+drop_target_banks:
+  dtb_red_drop_targets: 
+    drop_targets: dt_red_1, dt_red_2, dt_red_3, dt_red_4
+    reset_coils: c_upper_left_drop_target
+    reset_on_complete: 500ms
+    reset_events: reset_upper_left_drop_targets
+  dtb_white_drop_targets:
+    drop_targets: dt_white_1, dt_white_1, dt_white_1
+    reset_coils: c_upper_left_drop_target
+    reset_on_complete: 500ms
+    reset_events: reset_upper_left_drop_targets
+  dtb_middle_drop_targets: 
+    drop_targets: dt_middle_1, dt_middle_2, dt_middle_3, dt_middle_4
+    reset_coils: c_middle_drop_target
+    reset_on_complete: 500ms
+    reset_events: reset_middle_drop_targets

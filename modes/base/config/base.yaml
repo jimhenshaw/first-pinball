@@ -14,7 +14,10 @@ event_player:
     - turn_on_rollovers
     - reset_bonus_tracker
     - disable_score_bonus
+    - disable_white_bonus
+    - disable_special
     - turn_on_1k_lights
+    - reset_drop_targets
   mode_base_will_stop:
     - stop_mode_bumpers
 
@@ -23,6 +26,8 @@ event_player:
     - add_bonus_1000
     - show_bonus_light
     - check_bonus_enabled
+
+  add_extra_bonus: add_bonus
 
   #handle target hits
   shot_upper_left_extra_ball_hit{current_player.upper_left_extra_ball_enabled==1}: 
@@ -65,6 +70,11 @@ event_player:
     - disable_score_bonus
     - turn_off_bonus_enabled_light
 
+  shot_special_target_hit{current_player.free_game_awarded==0}:
+    - disable_special
+    - turn_off_special_light
+    - enable_free_game_awarded
+
   #handle multiplier hits
   shot_multiplier_enable_unlit_hit: 
     - turn_on_multiplier_enable_light
@@ -73,11 +83,6 @@ event_player:
   disable_multiplier:
     - turn_off_multiplier_enable_light
     - set_multiplier_disabled
-  sg_middle_drop_targets_hit{current_player.multiplier_enabled==1}:
-    - increment_multiplier_level
-    - turn_off_multiplier_lights
-    - show_multiplier_light
-    - disable_multiplier
 
   #handle lanes
   #handle upper left lane
@@ -103,7 +108,41 @@ event_player:
   turn_off_lane_lights: turn_off_g_lane_lights, turn_off_o_lane_lights, turn_off_l_lane_lights, turn_off_d_lane_lights
   turn_on_lane_lights: turn_on_g_lane_lights, turn_on_o_lane_lights, turn_on_l_lane_lights, turn_on_d_lane_lights
 
+  #reset drop targets
+  reset_drop_targets:
+    - reset_middle_drop_targets
+    - reset_upper_left_drop_targets
+
+  #handle drop targets
+  sg_middle_drop_targets_hit:
+    - score_2_000
+    - add_bonus
+  sg_middle_drop_targets_hit{current_player.multiplier_enabled==1}:
+    - increment_multiplier_level
+    - turn_off_multiplier_lights
+    - show_multiplier_light
+    - disable_multiplier
+  sg_white_drop_targets_hit:
+    - score_2_000
+    - add_bonus
+  sg_white_drop_targets_hit{current_player.white_bonus_enabled==1}: #add an extra 3k and 2 bonus if white bonus is enabled to make it 5k and 3 bonus total
+    - score_3_000
+    - add_bonus
+    - add_extra_bonus
+  sg_red_drop_targets_hit:
+    - score_2_000
+    - add_bonus
+  sg_red_drop_targets_complete:
+    - reset_upper_left_drop_targets
+  sg_red_drop_targets_complete{current_player.free_game_awarded==0}:
+    - enable_special
+    - turn_on_special_light
+  sg_white_drop_targets_complete:
+    - reset_upper_left_drop_targets
+    - enable_white_bonus
+    - turn_on_white_bonus_light
   
+
 #LIGHT PLAYER SECTION
 light_player:
   turn_on_rollovers: l_top_upper_left_bonus_rollover, l_middle_upper_left_bonus_rollover, l_bottom_upper_left_bonus_rollover, l_left_inlane_rollover, l_right_inlane_rollover
@@ -207,6 +246,16 @@ light_player:
   turn_off_shoot_again_light:
     l_shoot_again_enabled:
       color: stop
+    
+  turn_on_special_light: l_special_enabled
+  turn_off_special_light:
+    l_special_enabled:
+      color: stop
+
+  turn_on_white_bonus_light: l_white_drop_target_bonus_enabled
+  turn_off_white_bonus_light:
+    l_white_drop_target_bonus_enabled:
+      color: stop
 
 shots:
   
@@ -246,6 +295,25 @@ shots:
   shot_middle_drop_target_4:
     switch: s_middle_drop_target_4
 
+  #top left_drop targets
+  #red
+  shot_red_drop_target_1:
+    switch: s_red_drop_target_1
+  shot_red_drop_target_2:
+    switch: s_red_drop_target_2
+  shot_red_drop_target_3:
+    switch: s_red_drop_target_3
+  shot_red_drop_target_4:
+    switch: s_red_drop_target_4
+  #white
+  shot_white_drop_target_1:
+    switch: s_white_drop_target_1
+  shot_white_drop_target_2:
+    switch: s_white_drop_target_2
+  shot_white_drop_target_3:
+    switch: s_white_drop_target_3
+
+
 #stand up target shots
   shot_upper_left_extra_ball:
     switches: s_upper_left_extra_ball
@@ -263,6 +331,10 @@ shot_groups:
     reset_events: turn_off_upper_lane_lights
   sg_middle_drop_targets:
     shots: shot_middle_drop_target_1, shot_middle_drop_target_2, shot_middle_drop_target_3, shot_middle_drop_target_4
+  sg_white_drop_targets:
+    shots: shot_white_drop_target_1, shot_white_drop_target_2, shot_white_drop_target_3
+  sg_red_drop_targets:
+    shots: shot_red_drop_target_1, shot_red_drop_target_2, shot_red_drop_target_3, shot_red_drop_target_4
    
 shot_profiles:
   sp_on_off_loop:
@@ -301,6 +373,8 @@ variable_player:
     score: 100
   score_500:
     score: 500
+  score_2_000:
+    score: 2_000
   score_3_000:
     score: 3_000
   score_10_000:
@@ -362,6 +436,35 @@ variable_player:
     upper_left_extra_ball_enabled:
       int: 1
       action: set
+
+  #white bonus
+  enable_white_bonus:
+    white_bonus_enabled:
+      int: 1
+      action: set
+  disable_white_bonus:
+    white_bonus_enabled:
+      int: 0
+      action: set
+
+  #special
+  enable_special:
+    special_enabled:
+      int: 1
+      action: set
+  disable_special:
+    special_enabled:
+      int: 0
+      action: set
+  enable_free_game_awarded:
+    free_game_awarded:
+      int: 1
+      action: set
+  disable_free_game_awarded:
+    free_game_awarded:
+      int: 0
+      action: set
+  
 
 #EXTRA BALLS
 extra_balls:
