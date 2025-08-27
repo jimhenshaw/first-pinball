@@ -4,8 +4,8 @@
 # and stops at the end of each ball.
 
 mode:
-  start_events: ball_starting
-  stop_events: ball_will_end
+  start_events: ball_starting, start_base_mode
+  stop_events: ball_drained
   priority: 100
 
 event_player:
@@ -20,6 +20,8 @@ event_player:
     - reset_drop_targets
   mode_base_will_stop:
     - stop_mode_bumpers
+
+  shot_drain_hit: ball_drained
 
   #handle adding to bonus and updating lights, also checks if it should enable top right bonus shot
   add_bonus{current_player.bonus < 29_000}:
@@ -321,7 +323,6 @@ shots:
   shot_white_drop_target_3:
     switch: s_white_drop_target_3
 
-
 #stand up target shots
   shot_upper_left_extra_ball:
     switches: s_upper_left_extra_ball
@@ -338,6 +339,9 @@ shots:
   
   shot_all_drop_targets: #used to shorten spinner disablers
     switches: s_middle_drop_target_1, s_middle_drop_target_2, s_middle_drop_target_3, s_middle_drop_target_4, s_red_drop_target_1, s_red_drop_target_2, s_red_drop_target_3, s_red_drop_target_4, s_white_drop_target_1, s_white_drop_target_2, s_white_drop_target_3
+
+  shot_drain:
+    switches: s_drain
 
 shot_groups:
   sg_gold_lanes: 

@@ -18,6 +18,7 @@ config:
 modes:
   - attract
   - base
+  - add_bonus
 
 playfields:
   playfield:

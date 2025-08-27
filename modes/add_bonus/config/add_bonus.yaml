@@ -1,0 +1,108 @@
+#config_version=6
+
+mode:
+  start_events: ball_drained
+  stop_events: mode_base_starting
+  priority: 200
+  events_when_started: add_next_1k_bonus
+
+event_player:
+  add_next_1k_bonus{current_player.bonus >= 1_000}: 
+    - sub_bonus_1000
+    - score_1k_bonus_times_multiplier
+    - show_bonus_light
+    - start_bonus_timer
+  add_next_1k_bonus{current_player.bonus < 1_000}:
+    - start_base_mode
+
+  timer_bonus_timer_complete: add_next_1k_bonus
+    
+  #handle showing the bonus light
+  show_bonus_light{current_player.bonus_tracker < 40_000}:
+    - turn_off_bonus_lights
+    - handle_20k_light
+    - handle_10k_light
+    - turn_on_1k_lights
+  handle_20k_light{current_player.bonus_tracker >= 20_000}:
+    - turn_on_20k_light
+    - decrement_bonus_tracker_20k
+  handle_10k_light{current_player.bonus_tracker >= 10_000}:
+    - turn_on_10k_light
+    - decrement_bonus_tracker_10k
+
+light_player:
+#bonus lights
+  turn_off_bonus_lights:
+    l_1k_bonus:
+      color: stop
+    l_2k_bonus:
+      color: stop
+    l_3k_bonus:
+      color: stop
+    l_4k_bonus:
+      color: stop
+    l_5k_bonus:
+      color: stop
+    l_6k_bonus:
+      color: stop
+    l_7k_bonus:
+      color: stop
+    l_8k_bonus:
+      color: stop
+    l_9k_bonus:
+      color: stop
+    l_10k_bonus:
+      color: stop
+    l_20k_bonus:
+      color: stop
+  turn_on_bonus_lights: l_1k_bonus, l_2k_bonus, l_3k_bonus, l_4k_bonus, l_5k_bonus, l_6k_bonus, l_7k_bonus, l_8k_bonus, l_9k_bonus, l_10k_bonus, l_20k_bonus
+  turn_on_20k_light: l_20k_bonus
+  turn_on_10k_light: l_10k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==1_000}: l_1k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==2_000}: l_2k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==3_000}: l_3k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==4_000}: l_4k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==5_000}: l_5k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==6_000}: l_6k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==7_000}: l_7k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==8_000}: l_8k_bonus
+  turn_on_1k_lights{current_player.bonus_tracker==9_000}: l_9k_bonus
+
+shots:
+    shot_plunger_lane:
+      switches: s_plunger_lane
+
+timers:
+  bonus_timer:
+    start_value: 0
+    end_value: 1
+    direction: up
+    tick_interval: 500ms
+    control_events:
+      - action: restart
+        event: start_bonus_timer
+      - action: stop
+        event: bonus_timer_stopped
+
+variable_player:
+  #subtract 1000 to bonus and set the bonus tracker equal to the new bonus value
+  sub_bonus_1000:
+    bonus: -1000
+    bonus_tracker:
+      int: current_player.bonus
+      action: set
+
+  score_1k_bonus_times_multiplier:
+    score: 1000 * current_player.multiplier_level
+
+  #bonus tracker allows us to keep track of bonus lights without affecting the actual bonus value
+  decrement_bonus_tracker_20k:
+    bonus_tracker:
+      int: current_player.bonus_tracker - 20_000
+      action: set
+  decrement_bonus_tracker_10k:
+    bonus_tracker:
+      int: current_player.bonus_tracker - 10_000
+      action: set
+
+  
