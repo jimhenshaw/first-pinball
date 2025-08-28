@@ -22,22 +22,22 @@ switches:
     number:
   
 
-  #gold/ship lanes switches, these are paired together so g activates like s 
-  s_g_upper_lane:
+  #letter lanes switches, these are paired together so upper a activates lower a
+  s_a_upper_lane:
     number:
-  s_o_upper_lane:
+  s_b_upper_lane:
     number:
-  s_l_upper_lane:
+  s_c_upper_lane:
     number:
   s_d_upper_lane:
     number:
-  s_s_lower_lane:
+  s_a_lower_lane:
     number:
-  s_h_lower_lane:
+  s_b_lower_lane:
     number:
-  s_i_lower_lane:
+  s_c_lower_lane:
     number:
-  s_p_lower_lane:
+  s_d_lower_lane:
     number:
 
   #bumper switches

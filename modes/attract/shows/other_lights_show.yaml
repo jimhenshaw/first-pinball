@@ -1,0 +1,103 @@
+#show_version=6
+
+# Other lights fill up in this order
+# Lower left lanes lights left to right
+# Right special
+# Right extra ball
+# Advance multiplier
+# Spinner light
+# Score bonus light
+# left extra ball light
+# White drop targets light
+# Upper right lane lights left to right
+
+- duration: 66ms
+  lights:
+    l_a_lower_lane: green
+- duration: 66ms
+  lights:
+    l_b_lower_lane: green
+- duration: 66ms
+  lights:
+    l_c_lower_lane: green
+- duration: 66ms
+  lights:
+    l_d_lower_lane: green
+- duration: 66ms
+  lights:
+    l_special_enabled: red
+- duration: 66ms
+  lights:
+    l_right_extra_ball_enabled: salmon
+- duration: 66ms
+  lights:
+    l_advance_multiplier: yellow
+- duration: 66ms
+  lights:
+    l_spinner_bonus_enabled: yellow
+- duration: 66ms
+  lights:
+    l_score_bonus_enabled: yellow
+- duration: 66ms
+  lights:
+    l_upper_left_extra_ball_enabled: salmon
+- duration: 66ms
+  lights:
+    l_white_drop_target_bonus_enabled: yellow
+- duration: 66ms
+  lights:
+    l_a_upper_lane: green
+- duration: 66ms
+  lights:
+    l_b_upper_lane: green
+- duration: 66ms
+  lights:
+    l_c_upper_lane: green
+- duration: 66ms
+  lights:
+    l_d_upper_lane: green
+- duration: 66ms
+  lights:
+    l_a_lower_lane: stop
+- duration: 66ms
+  lights:
+    l_b_lower_lane: stop
+- duration: 66ms
+  lights:
+    l_c_lower_lane: stop
+- duration: 66ms
+  lights:
+    l_d_lower_lane: stop
+- duration: 66ms
+  lights:
+    l_special_enabled: stop
+- duration: 66ms
+  lights:
+    l_right_extra_ball_enabled: stop
+- duration: 66ms
+  lights:
+    l_advance_multiplier: stop
+- duration: 66ms
+  lights:
+    l_spinner_bonus_enabled: stop
+- duration: 66ms
+  lights:
+    l_score_bonus_enabled: stop
+- duration: 66ms
+  lights:
+    l_upper_left_extra_ball_enabled: stop
+- duration: 66ms
+  lights:
+    l_white_drop_target_bonus_enabled: stop
+- duration: 66ms
+  lights:
+    l_a_upper_lane: stop
+- duration: 66ms
+  lights:
+    l_b_upper_lane: stop
+- duration: 66ms
+  lights:
+    l_c_upper_lane: stop
+- duration: 66ms
+  lights:
+    l_d_upper_lane: stop

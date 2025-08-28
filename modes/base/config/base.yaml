@@ -106,15 +106,15 @@ event_player:
   
   
   #handle gold/ship lane events
-  shot_g_lane_unlit_hit: turn_on_g_lane_lights
-  shot_o_lane_unlit_hit: turn_on_o_lane_lights
-  shot_l_lane_unlit_hit: turn_on_l_lane_lights
+  shot_a_lane_unlit_hit: turn_on_a_lane_lights
+  shot_b_lane_unlit_hit: turn_on_b_lane_lights
+  shot_c_lane_unlit_hit: turn_on_c_lane_lights
   shot_d_lane_unlit_hit: turn_on_d_lane_lights
-  sg_gold_lanes_lit_complete:
+  sg_letter_lanes_lit_complete:
     - enable_upper_left_extra_ball
     - turn_on_upper_left_extra_ball_light
-  turn_off_lane_lights: turn_off_g_lane_lights, turn_off_o_lane_lights, turn_off_l_lane_lights, turn_off_d_lane_lights
-  turn_on_lane_lights: turn_on_g_lane_lights, turn_on_o_lane_lights, turn_on_l_lane_lights, turn_on_d_lane_lights
+  turn_off_lane_lights: turn_off_a_lane_lights, turn_off_b_lane_lights, turn_off_c_lane_lights, turn_off_d_lane_lights
+  turn_on_lane_lights: turn_on_a_lane_lights, turn_on_b_lane_lights, turn_on_c_lane_lights, turn_on_d_lane_lights
 
   #reset drop targets
   reset_drop_targets:
@@ -159,29 +159,29 @@ light_player:
     l_upper_left_extra_ball_enabled:
       color: stop
   #lane lights
-  turn_on_g_lane_lights: l_g_upper_lane, l_s_lower_lane
-  turn_on_o_lane_lights: l_o_upper_lane, l_h_lower_lane
-  turn_on_l_lane_lights: l_l_upper_lane, l_i_lower_lane
-  turn_on_d_lane_lights: l_d_upper_lane, l_p_lower_lane
-  turn_off_g_lane_lights: 
-    l_g_upper_lane:
+  turn_on_a_lane_lights: l_a_upper_lane, l_a_lower_lane
+  turn_on_b_lane_lights: l_b_upper_lane, l_b_lower_lane
+  turn_on_c_lane_lights: l_c_upper_lane, l_c_lower_lane
+  turn_on_d_lane_lights: l_d_upper_lane, l_d_lower_lane
+  turn_off_a_lane_lights: 
+    l_a_upper_lane:
       color: stop
-    l_s_lower_lane:
+    l_a_lower_lane:
       color: stop
-  turn_off_o_lane_lights: 
-    l_o_upper_lane:
+  turn_off_b_lane_lights: 
+    l_b_upper_lane:
       color: stop
-    l_h_lower_lane:
+    l_b_lower_lane:
       color: stop
-  turn_off_l_lane_lights: 
-    l_l_upper_lane:
+  turn_off_c_lane_lights: 
+    l_c_upper_lane:
       color: stop
-    l_i_lower_lane:
+    l_c_lower_lane:
       color: stop
   turn_off_d_lane_lights: 
     l_d_upper_lane:
       color: stop
-    l_p_lower_lane:
+    l_d_lower_lane:
       color: stop
 
   #multiplier lights
@@ -277,17 +277,17 @@ shots:
   shot_10_000_point_lane:
     switches: s_left_outer_drain_lane, s_right_outer_drain_lane
 
-  #gold/ship lane shots
-  shot_g_lane:
-    switches: s_g_upper_lane, s_s_lower_lane
-  shot_o_lane:
-    switches: s_o_upper_lane, s_h_lower_lane
-  shot_l_lane:
-    switches: s_l_upper_lane, s_i_lower_lane
+  #letter lane shots
+  shot_a_lane:
+    switches: s_a_upper_lane, s_a_lower_lane
+  shot_b_lane:
+    switches: s_b_upper_lane, s_b_lower_lane
+  shot_c_lane:
+    switches: s_c_upper_lane, s_c_lower_lane
   shot_d_lane:
-    switches: s_d_upper_lane, s_p_lower_lane
+    switches: s_d_upper_lane, s_d_lower_lane
   shot_500_point_letter_lane: 
-    switches: s_g_upper_lane, s_o_upper_lane, s_l_upper_lane, s_d_upper_lane, s_s_lower_lane, s_h_lower_lane, s_i_lower_lane, s_p_lower_lane
+    switches: s_a_upper_lane, s_b_upper_lane, s_c_upper_lane, s_d_upper_lane, s_a_lower_lane, s_b_lower_lane, s_c_lower_lane, s_d_lower_lane
 
   #multiplier enable bumpers & rollovers
   shot_multiplier_enable:
@@ -344,8 +344,8 @@ shots:
     switches: s_drain
 
 shot_groups:
-  sg_gold_lanes: 
-    shots: shot_g_lane, shot_o_lane, shot_l_lane, shot_d_lane
+  sg_letter_lanes: 
+    shots: shot_a_lane, shot_b_lane, shot_c_lane, shot_d_lane
     reset_events: turn_off_upper_lane_lights
   sg_middle_drop_targets:
     shots: shot_middle_drop_target_1, shot_middle_drop_target_2, shot_middle_drop_target_3, shot_middle_drop_target_4

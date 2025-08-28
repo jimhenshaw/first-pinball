@@ -15,6 +15,13 @@ mode_settings:
   next_item_events: s_flipper_right_active, timer_attract_carousel_timer_complete
   previous_item_events: s_flipper_left_active
 
+show_player:
+  mode_attract_started: 
+    bonus_light_show:
+      loops: -1
+    other_lights_show:
+      loops: -1
+
 slide_player:
   mode_attract_started: attract
 

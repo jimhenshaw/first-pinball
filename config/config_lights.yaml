@@ -1,22 +1,22 @@
 #config_version=6
 
 lights:
-  #gold lane lights
-  l_g_upper_lane:
+  #lane lights
+  l_a_upper_lane:
     number:
-  l_o_upper_lane:
+  l_b_upper_lane:
     number:
-  l_l_upper_lane:
+  l_c_upper_lane:
     number:
   l_d_upper_lane:
     number:
-  l_s_lower_lane:
+  l_a_lower_lane:
     number:
-  l_h_lower_lane:
+  l_b_lower_lane:
     number:
-  l_i_lower_lane:
+  l_c_lower_lane:
     number:
-  l_p_lower_lane:
+  l_d_lower_lane:
     number:
 
   #bonus lights
